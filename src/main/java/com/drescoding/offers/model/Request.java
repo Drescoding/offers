@@ -1,8 +1,5 @@
 package com.drescoding.offers.model;
 
-import java.util.ArrayList;
-import javax.validation.constraints.NotNull;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

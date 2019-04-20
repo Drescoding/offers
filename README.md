@@ -1,5 +1,5 @@
 # offers
-http://www.springboottutorial.com/spring-boot-and-h2-in-memory-database
+
 
 Assumptions:
 
@@ -34,3 +34,6 @@ $ mvn spring-boot:run -Dspring.profiles.active=localhost
    ```
 
 ![postman](./screenshot.png?raw=true "Postman")
+
+##To do:
+-[ ] Not null not working - validation of request/response + tests
