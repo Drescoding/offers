@@ -1,6 +1,6 @@
 package com.drescoding.offers.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,7 +18,7 @@ public class Response {
   @NonNull
   private String description;
   @NonNull
-  private Date expiryDate;
+  private LocalDate expiryDate;
   @NonNull
   private Boolean valid;
   @NonNull
