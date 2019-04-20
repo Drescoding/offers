@@ -1,6 +1,13 @@
 package com.drescoding.offers.model;
 
+import javax.validation.constraints.NotNull;
+
 public class Request {
 
-  String
+  @NotNull
+  String productName;
+
+  @NotNull
+  String currency;
+
 }

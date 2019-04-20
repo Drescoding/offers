@@ -11,6 +11,13 @@ public class Response {
   @NotNull
   Date expiryDate;
 
+  @NotNull
+  Boolean valid;
 
+  @NotNull
+  String currency;
+
+  @NotNull
+  Double price;
 
 }
