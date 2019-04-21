@@ -6,7 +6,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 import com.drescoding.offers.model.Product;
-import com.drescoding.offers.model.ProductRepository;
+import com.drescoding.offers.service.ProductRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
