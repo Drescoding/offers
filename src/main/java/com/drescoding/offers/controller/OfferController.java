@@ -1,23 +1,46 @@
 package com.drescoding.offers.controller;
 
-import java.time.LocalDate;
-import java.util.Date;
+import java.util.List;
 
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-
-import com.drescoding.offers.model.Request;
-import com.drescoding.offers.model.Response;
+import com.drescoding.offers.model.Product;
+import com.drescoding.offers.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class OfferController {
 
-  @RequestMapping(value="", method = POST)
-  public static Response offer(@RequestBody Request request) {
-    Date date = new Date();
-    Response response = new Response("Test description", LocalDate.of( 2014 , 2 , 11 ), true, "EUR", 2.5 );
-    return response;
+  @Autowired
+  ProductService productService;
+
+  @GetMapping("/products")
+  private List<Product> getAllProducts() {
+    return productService.getAllProducts();
+  }
+
+  @GetMapping("/product/{id}")
+  private Product getProduct(@PathVariable("id") int id) {
+    return productService.getProductById(id);
+  }
+
+  @GetMapping("/productName/{name}")
+  private List<Product> getProduct(@PathVariable("name") String name) {
+    return productService.getProductByName(name);
+  }
+
+  @DeleteMapping("/product/{id}")
+  private void deletePerson(@PathVariable("id") int id) {
+    productService.delete(id);
+  }
+
+  @PostMapping("/addProduct")
+  private int addProduct(@RequestBody Product product) {
+    productService.saveOrUpdate(product);
+    return product.getId();
   }
 }
