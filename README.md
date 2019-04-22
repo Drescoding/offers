@@ -1,11 +1,19 @@
 # Offers
 
 
-Assumptions:
+## Assumptions:
 - If you want to manually cancel an offer, you want to delete it from the database.
 - Simplificaton: I'm using a embedded database so the data is only kept when the application is running. For a production application, this will need to be changed.
 - The date is entered in that format: dd/MM/yyyy
 
+## To do:
+- [ ] Not null not working - validation of request/response + tests
+- [X] Add screenshots to README
+- [X] Add the automatic expiration
+- [ ] Change from date to # of days
+- [ ] Preload database with example products
+- [ ] Edge cases
+- [ ] Cancellation/Delete? Remove assumption there? 
 
 ## How to run: 
 
@@ -44,44 +52,32 @@ From POSTMAN:
 
 ![postman](./screenshotAddModify.png?raw=true "Postman")
 
-###Retrieving the product by its ID: 
+### Retrieving the product by its ID: 
 
 GET Request to http://localhost:8080/product/id
 
 ![postman](./show1Product.png?raw=true "Postman")
 
-###Retrieving the product(s) by its name:
+### Retrieving the product(s) by its name:
 
 GET Request to http://localhost:8080/productByName/name
 
 ![postman](./screenshotProductName.png?raw=true "Postman")
 
-###Show all products: 
+### Show all products: 
 
 GET Request to http://localhost:8080/products/
 
 ![postman](./showAllProducts.png?raw=true "Postman")
 
-###Delete product: 
+### Delete product: 
 
 DELETE Request to http://localhost:8080/product/id
 
 ![postman](./screenshotDelete.png?raw=true "Postman")
 
 
-
-##To do:
-- [ ] Not null not working - validation of request/response + tests
-- [X] Add screenshots to README
-- [X] Add the automatic expiration
-- [ ] Change from date to # of days
-- [ ] Preload database with example products
-- [ ] Edge cases
-- [ ] Cancellation/Delete? Remove assumption there? 
-
-
-
-
+### How to run the database: 
 Open the H2 console by typing in http://localhost:8080/h2-console in the browser address bar.
-change the Database URL to jdbc:h2:mem:testdb in the login screen as this is the default URL configured by Spring Boot.
+Change the Database URL to jdbc:h2:mem:testdb in the login screen as this is the default URL configured by Spring Boot.
 
