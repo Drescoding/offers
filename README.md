@@ -4,7 +4,7 @@
 Assumptions:
 - If you want to manually cancel an offer, you want to delete it from the database.
 - Simplificaton: I'm using a embedded database so the data is only kept when the application is running. For a production application, this will need to be changed.
-
+- The date is entered in that format: dd/MM/yyyy
 
 
 ## How to run: 

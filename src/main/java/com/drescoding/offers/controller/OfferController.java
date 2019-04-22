@@ -1,5 +1,6 @@
 package com.drescoding.offers.controller;
 
+import java.text.ParseException;
 import java.util.List;
 
 import com.drescoding.offers.model.Product;
@@ -24,7 +25,7 @@ public class OfferController {
   }
 
   @GetMapping("/product/{id}")
-  private Product getProduct(@PathVariable("id") int id) {
+  private Product getProduct(@PathVariable("id") int id) throws ParseException {
     return productService.getProductById(id);
   }
 

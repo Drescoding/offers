@@ -1,5 +1,6 @@
 package com.drescoding.offers.unit;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -36,7 +37,7 @@ public class ProductServiceTest {
   }
 
   @Test
-  public void getProductByIdTest() {
+  public void getProductByIdTest() throws ParseException {
     //Given
     when(productRepository.findById(1)).thenReturn(Optional.of(product1));
     ProductService productService = new ProductService(productRepository);
@@ -61,13 +62,14 @@ public class ProductServiceTest {
   }
 
   @Test
-  public void shouldBeCancelledAfterTheExpiryDate() {
+  public void shouldBeCancelledAfterTheExpiryDate() throws ParseException {
     //Given
     ProductService productService = new ProductService(productRepository);
-    Product expiredProduct = new Product(1, "Dress", "EUR", 10.0, "Nice dress", "10/11/2018", true);
+    Product expiredProduct = new Product(2, "Jeans", "EUR", 10.0, "Nice jeans", "1/1/2018", true);
+    when(productRepository.findById(2)).thenReturn(Optional.of(expiredProduct));
 
     //When
-    Product product = productService.getProductById(1);
+    Product product = productService.getProductById(2);
 
     //Then
     assertEquals(false, product.getValid());
