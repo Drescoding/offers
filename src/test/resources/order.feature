@@ -16,3 +16,12 @@ Feature: Are my orders correct?
     When The product is added to the database
     And The customer asks for an offer
     Then The order is cancelled
+
+  Scenario: The merchant wants to cancel an existing offer before expiry date
+    Given The merchant provides information on a product to add to the database
+    When The product is added to the database
+    And The merchant cancels it
+    And The customer asks for an offer
+    Then It should return an error
+
+

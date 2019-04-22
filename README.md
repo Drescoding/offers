@@ -10,10 +10,12 @@
 - [X] Not null not working - validation of request/response + tests
 - [X] Add screenshots to README
 - [X] Add the automatic expiration
-- [ ] Change from date to # of days
 - [X] Preload database with example products
+- [ ] Finish BDD + document it
+- [ ] Change from date to # of days
 - [ ] Edge cases
 - [ ] Cancellation/Delete? Remove assumption there? 
+- [ ] Delete by name rather than ID
 
 ## How to run: 
 
@@ -81,3 +83,8 @@ DELETE Request to http://localhost:8080/product/id
 Open the H2 console by typing in http://localhost:8080/h2-console in the browser address bar.
 Change the Database URL to jdbc:h2:mem:testdb in the login screen as this is the default URL configured by Spring Boot.
 
+### Run tests
+```jshelllanguage
+mvn test
+```
+If you run the Cucumber separately, the application should be running locally. 

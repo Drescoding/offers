@@ -37,7 +37,7 @@ public class OfferController {
   }
 
   @DeleteMapping("/product/{id}")
-  private void deletePerson(@PathVariable("id") int id) {
+  private void deleteProduct(@PathVariable("id") int id) {
     productService.delete(id);
   }
 

@@ -19,11 +19,11 @@ public class OrderSteps {
   String requestOrder;
   String responseString;
   Response response;
+  String idProduct;
 
   @Given("^The merchant provides information on a product to add to the database$")
   public void The_merchant_provides_information_on_a_product_to_add_to_the_database() {
     requestOrder = "{\n" +
-        "\t\"id\": 1,\n" +
         "\t\"name\": \"dress\",\n" +
         "\t\"currency\": \"EUR\",\n" +
         "\t\"price\": 20,\n" +
@@ -36,7 +36,6 @@ public class OrderSteps {
   @Given("^The merchant provides information on a expired product$")
   public void The_merchant_provides_information_on_a_expired_product() {
     requestOrder = "{\n" +
-        "\t\"id\": 1,\n" +
         "\t\"name\": \"dress\",\n" +
         "\t\"currency\": \"EUR\",\n" +
         "\t\"price\": 20,\n" +
@@ -65,7 +64,9 @@ public class OrderSteps {
     httpRequest.header("Content-Type", "application/json");
     httpRequest.body(requestOrder);
     response = httpRequest.post("/addProduct");
-    responseString = response.asString();
+    log.debug("Response: " + response.asString());
+    idProduct = response.asString();
+    log.debug("The ID for added product is: " + idProduct);
 
   }
 
@@ -76,25 +77,39 @@ public class OrderSteps {
     RequestSpecification httpRequest = RestAssured.given();
     httpRequest.header("Content-Type", "application/json");
     httpRequest.body(requestOrder);
-    response = httpRequest.get("/productName/dress");
+    response = httpRequest.get("/product/" + idProduct);
+    log.debug("Customer response: " + response.asString());
   }
+
+  @When("^The merchant cancels it$")
+  public void the_merchant_cancels_it() {
+    RestAssured.baseURI = "http://localhost:8080";
+    RequestSpecification httpRequest = RestAssured.given();
+    httpRequest.header("Content-Type", "application/json");
+    httpRequest.body(requestOrder);
+    response = httpRequest.delete("/product/" + idProduct);
+    log.debug("Deleted product" + response.asString());
+  }
+
 
 
   @Then("^It should add it to the database$")
   public void it_should_add_it_to_the_database() {
-    Assert.assertEquals("1", responseString);
+    Assert.assertEquals(idProduct, response.asString());
+    Assert.assertEquals(200, response.getStatusCode());
   }
 
   @Then("^It should return an error$")
   public void it_should_return_an_error() {
-    Assert.assertEquals(400, response.getStatusCode());
+    log.debug("Error Response: " + response.asString());
+    Assert.assertNotEquals(200, response.getStatusCode());
   }
 
 
   @Then("^The order is cancelled$")
   public void the_order_is_cancelled() {
-    log.debug("Response**: " + response.jsonPath().getString("valid[0]"));
-   Assert.assertEquals("false", response.jsonPath().getString("valid[0]"));
+    log.debug("Cancelled order response: " + response.asString());
+   Assert.assertEquals(false, response.jsonPath().get("valid"));
   }
 
 }
