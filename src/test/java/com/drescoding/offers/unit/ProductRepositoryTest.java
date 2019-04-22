@@ -7,12 +7,14 @@ import static org.junit.Assert.assertEquals;
 
 import com.drescoding.offers.model.Product;
 import com.drescoding.offers.service.ProductRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+@Slf4j
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class ProductRepositoryTest {
@@ -34,7 +36,7 @@ public class ProductRepositoryTest {
   }
 
   @Test
-  public void add2ProductsAndDelete1(){
+  public void add2ProductsAndDelete1() {
     //Given
     Product product1 = new Product(1, "Dress", "EUR", 10.0, "Nice dress", "10/11/2019", true);
     Product product2 = new Product(2, "Top", "EUR", 20.0, "Nice top", "10/12/2019", true);
@@ -54,7 +56,7 @@ public class ProductRepositoryTest {
   }
 
   @Test
-  public void updateProduct(){
+  public void updateProduct() {
     //Given
     Product product1 = new Product(1, "Dress", "EUR", 10.0, "Nice dress", "10/11/2019", true);
     Product product2 = new Product(1, "Top", "EUR", 20.0, "Nice top", "10/12/2019", true);
@@ -65,10 +67,14 @@ public class ProductRepositoryTest {
 
     //Then
     List<Product> products = new ArrayList<>();
-    productRepository.findAll().forEach(product -> products.add(product));
+    productRepository.findAll().forEach(product -> {
+      if (product.getId() == 1) {
+        products.add(product);
+      }
+    });
 
     assertEquals("Top", products.get(0).getName());
-g    assertEquals(1, products.size());
+    assertEquals(1, products.size());
 
   }
 }
