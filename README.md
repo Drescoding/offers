@@ -1,4 +1,4 @@
-# offers
+# Offers
 
 
 Assumptions:
@@ -71,12 +71,13 @@ DELETE Request to http://localhost:8080/product/id
 
 
 ##To do:
--[ ] Not null not working - validation of request/response + tests
--[X] Add screenshots to README
--[ ] Add the automatic expiration/ Change from date to # of days
--[ ] Preload database with example products
--[ ] Edge cases
--[ ] Cancellation/Delete? Remove assumption there? 
+- [ ] Not null not working - validation of request/response + tests
+- [X] Add screenshots to README
+- [X] Add the automatic expiration
+- [ ] Change from date to # of days
+- [ ] Preload database with example products
+- [ ] Edge cases
+- [ ] Cancellation/Delete? Remove assumption there? 
 
 
 
