@@ -33,10 +33,17 @@ public class ProductService {
     return productRepository.findById(id).get();
   }
 
-  public List<Product> getProductByName(String name) {
+  public List<Product> getProductByName(String name) throws ParseException{
     List<Product> products = new ArrayList<Product>();
     log.debug("Product(s): " + productRepository.getProductByName(name));
-    productRepository.getProductByName(name).forEach(product -> products.add(product));
+    productRepository.getProductByName(name).forEach(
+        product -> {
+          try {
+            expire(product);
+          } catch (ParseException e) {
+            e.printStackTrace();
+          }
+          products.add(product);});
     return products;
   }
 

@@ -23,7 +23,7 @@ public class ProductServiceTest {
   List<Product> listOfProducts = new ArrayList<>();
 
   @Test
-  public void getProductByNameTest() {
+  public void getProductByNameTest() throws ParseException {
     //Given
     listOfProducts.add(product1);
     when(productRepository.getProductByName("Dress")).thenReturn(listOfProducts);

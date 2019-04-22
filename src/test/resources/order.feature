@@ -10,3 +10,9 @@ Feature: Are my orders correct?
     Given The merchant adds a product to the database with missing fields
     When The product is added to the database
     Then It should return an error
+
+  Scenario: The order expires
+    Given The merchant provides information on a expired product
+    When The product is added to the database
+    And The customer asks for an offer
+    Then The order is cancelled

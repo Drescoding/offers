@@ -32,7 +32,7 @@ public class OfferController {
   }
 
   @GetMapping("/productName/{name}")
-  private List<Product> getProduct(@PathVariable("name") String name) {
+  private List<Product> getProduct(@PathVariable("name") String name) throws ParseException {
     return productService.getProductByName(name);
   }
 
