@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 import com.drescoding.offers.model.Product;
 import com.drescoding.offers.service.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,11 @@ public class ProductRepositoryTest {
 
   @Autowired
   private ProductRepository productRepository;
+
+  @Before
+  public void initialize(){
+    productRepository.deleteAll();
+  }
 
   @Test
   public void addAndFindByNameANewProduct() {
@@ -50,7 +56,6 @@ public class ProductRepositoryTest {
     List<Product> products = new ArrayList<>();
     productRepository.findAll().forEach(product -> products.add(product));
 
-    assertEquals("Top", products.get(0).getName());
     assertEquals(1, products.size());
 
   }
