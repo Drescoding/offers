@@ -11,7 +11,7 @@
 - [X] Add screenshots to README
 - [X] Add the automatic expiration
 - [ ] Change from date to # of days
-- [ ] Preload database with example products
+- [X] Preload database with example products
 - [ ] Edge cases
 - [ ] Cancellation/Delete? Remove assumption there? 
 
