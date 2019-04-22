@@ -6,12 +6,12 @@
 - Simplificaton: I'm using a embedded database so the data is only kept when the application is running. For a production application, this will need to be changed.
 - The merchand provides an expiry date. The date is entered in that format: dd/MM/yyyy
 
-## To do:
+## To do/ If I had more time:
 - [X] Not null not working - validation of request/response + tests
 - [X] Add screenshots to README
 - [X] Add the automatic expiration
 - [X] Preload database with example products
-- [ ] Finish BDD + document it
+- [X] Finish BDD + document it
 - [ ] Change from date to # of days
 - [ ] Edge cases
 - [ ] Cancellation/Delete? Remove assumption there? 
