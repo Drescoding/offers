@@ -1,5 +1,6 @@
 package com.drescoding.offers.steps;
 
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.restassured.RestAssured;
@@ -14,10 +15,10 @@ public class OrderSteps {
 
   String requestOrder;
   String responseString;
+  Response response;
 
-  @When("^The merchant adds a product to the database$")
-  public void The_merchant_adds_a_product_to_the_database() throws JSONException {
-    RestAssured.baseURI = "http://localhost:8080";
+  @Given("^The merchant provides information on a product to add to the database$")
+  public void The_merchant_provides_information_on_a_product_to_add_to_the_database() {
     requestOrder = "{\n" +
         "\t\"id\": 1,\n" +
         "\t\"name\": \"dress\",\n" +
@@ -29,20 +30,39 @@ public class OrderSteps {
         "}";
   }
 
+  @Given("^The merchant adds a product to the database with missing fields$")
+  public void The_merchant_adds_a_product_to_the_database_with_missing_fields() throws JSONException {
+    requestOrder = "{\n" +
+        "\t\"id\": 1,\n" +
+        "\t\"currency\": \"EUR\",\n" +
+        "\t\"price\": 20,\n" +
+        "\t\"description\": \"Brand new red dress\",\n" +
+        "\t\"expiryDate\": \"11/20/2019\",\n" +
+        "\t\"valid\": true\n" +
+        "}";
+  }
 
-  @When("^The customer asks for an offer on the product$")
-  public void the_customer_asks_for_an_offer_on_the_product() {
+
+  @When("^The product is added to the database$")
+  public void the_product_is_added_to_the_database() {
+    RestAssured.baseURI = "http://localhost:8080";
     RequestSpecification httpRequest = RestAssured.given();
     httpRequest.header("Content-Type", "application/json");
     httpRequest.body(requestOrder);
-    Response response = httpRequest.post("/addProduct");
+    response = httpRequest.post("/addProduct");
     responseString = response.asString();
 
   }
 
-  @Then("^It should give them the full details$")
+  @Then("^It should add it to the database$")
 
-  public void it_should_give_them_the_full_details() {
+  public void it_should_add_it_to_the_database() {
     Assert.assertEquals("1", responseString);
+  }
+
+  @Then("^It should return an error$")
+  public void it_should_return_an_error() {
+    // Write code here that turns the phrase above into concrete actions
+    Assert.assertEquals(400, response.getStatusCode());
   }
 }

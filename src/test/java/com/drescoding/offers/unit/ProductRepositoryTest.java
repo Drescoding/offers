@@ -68,7 +68,7 @@ public class ProductRepositoryTest {
     productRepository.findAll().forEach(product -> products.add(product));
 
     assertEquals("Top", products.get(0).getName());
-    assertEquals(1, products.size());
+g    assertEquals(1, products.size());
 
   }
 }

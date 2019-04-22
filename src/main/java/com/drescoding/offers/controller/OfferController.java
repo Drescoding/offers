@@ -3,6 +3,8 @@ package com.drescoding.offers.controller;
 import java.text.ParseException;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.drescoding.offers.model.Product;
 import com.drescoding.offers.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +42,7 @@ public class OfferController {
   }
 
   @PostMapping("/addProduct")
-  private int addProduct(@RequestBody Product product) {
+  private int addProduct(@Valid  @RequestBody Product product) {
     productService.saveOrUpdate(product);
     return product.getId();
   }
