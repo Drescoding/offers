@@ -4,10 +4,10 @@
 ## Assumptions:
 - If you want to manually cancel an offer, you want to delete it from the database.
 - Simplificaton: I'm using a embedded database so the data is only kept when the application is running. For a production application, this will need to be changed.
-- The date is entered in that format: dd/MM/yyyy
+- The merchand provides an expiry date. The date is entered in that format: dd/MM/yyyy
 
 ## To do:
-- [ ] Not null not working - validation of request/response + tests
+- [X] Not null not working - validation of request/response + tests
 - [X] Add screenshots to README
 - [X] Add the automatic expiration
 - [ ] Change from date to # of days
